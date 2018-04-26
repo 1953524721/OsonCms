@@ -17,4 +17,17 @@ class Conf extends Controller
         $this->assign("data",$data);
         return $this->fetch("show");
     }
+    /*
+     * @刘柯
+     * 2018/04/16 16:19
+     * 渲染修改页面
+     */
+    public function update()
+    {
+        $model = new ConfgModel();
+        $data  = $model->Find("1");
+        $this->assign("data",$data);
+        return $this->fetch("update");
+    }
+
 }

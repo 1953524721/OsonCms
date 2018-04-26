@@ -95,10 +95,10 @@
 }
 
 .btn_res{
-	background:   url('../img/btn_res.png') 0px -1px no-repeat;
+	background:   url('../img/conf/btn_res.png') 0px -1px no-repeat;
 }
 .btn_res:hover{
-	background:   url('../img/btn_res_hover.png') 0px 0px no-repeat;
+	background:   url('../img/conf/btn_res_hover.png') 0px 0px no-repeat;
 	color: #fff;
 }
 /*table*/
