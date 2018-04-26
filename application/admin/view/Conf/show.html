@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>配置页</title>
+    <link rel="stylesheet" href="__PUBLIC__/admin/css/common.css">
+    <link rel="stylesheet" href="__PUBLIC__/admin/css/main.css">
+</head>
+<body>
+<div id="table" class="mt10">
+    <div class="box span10 oh">
+        <table width="100%" border="1" cellpadding="0" cellspacing="0" class="list_table">
+            <tr>
+                <th width="300">标题</th>
+                <td><?php echo $data['config_title']?></td>
+            </tr>
+            <tr>
+                <th width="300">排序</th>
+                <td><?php echo $data['config_desc']?></td>
+            </tr>
+            <tr>
+                <th width="300">时间</th>
+                <td><?php echo $data['config_time']?></td>
+            </tr>
+            <tr>
+                <th width="300">头部</th>
+                <td><?php echo $data['config_herad']?></td>
+            </tr>
+            <tr>
+                <th width="300">状态</th>
+                <td>
+                    {if condition = "($data['is_show'] == 1)"}
+                    <span class="statu" where = "0" style="cursor: pointer"><font color="green">正常显示</font></span>
+                    {else/}
+                    <span class="statu" where = "1" style="cursor: pointer"><font color="red">不显示</font></span>
+                    {/if}
+                </td>
+            </tr>
+            <tr>
+                <td class="td_right"></td>
+                <td class="">
+                    <input type="button" class="btn btn82 btn_save2" value="修改" id="gai">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#gai").on("click",function () {
+        location.href ="{:url('Confg/update')}";
+    })
+    $(".statu").on("click",function () {
+        // alert(10);
+        var where = $(this).attr("where");
+        var _this = $(this);
+        $.ajax({
+            type:"POST",
+            url:"{:Url('Confg/statu')}",
+            data:{where:where},
+            success:function (res) {
+                if(res==1)
+                {
+                    if(where==0)
+                    {
+                        _this.attr("where","1");
+                        _this.html("<font color=\"red\">不显示</font>");
+                    }
+                    else
+                    {
+                        _this.attr("where","0");
+                        _this.html("<font color=\"green\">正常显示</font>");
+                    }
+                }
+                else
+                {
+                    alert(res)
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
