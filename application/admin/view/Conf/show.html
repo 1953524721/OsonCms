@@ -47,6 +47,10 @@
                 <td><?php echo $data['config_tel']?></td>
             </tr>
             <tr>
+                <th width="300">邮箱</th>
+                <td><?php echo $data['config_email']?></td>
+            </tr>
+            <tr>
                 <th width="300">状态</th>
                 <td>
                     {if condition = "($data['is_show'] == 1)"}
@@ -69,6 +73,29 @@
 <script type="text/javascript">
     $("#gai").on("click",function () {
         location.href ="{:url('Conf/update')}";
+    })
+    $(".statu").on("click",function () {
+        var where = $(this).attr("where");
+        var _this = $(this);
+        $.ajax({
+            type:"POST",
+            url:"{:Url('Conf/statu')}",
+            data:{where:where},
+            dataType:"json",
+            success:function (res) {
+                if(res.e==1) {
+                    if(where==0) {
+                        _this.attr("where","1");
+                        _this.html("<font color=\"red\">不显示</font>");
+                    }else {
+                        _this.attr("where","0");
+                        _this.html("<font color=\"green\">正常显示</font>");
+                    }
+                } else {
+                    alert(res.m)
+                }
+            }
+        })
     })
 </script>
 </center>

@@ -233,4 +233,23 @@ class Controller
         $str  =   addslashes($str);
         return   $str;
     }
+    public function file($file)
+    {
+        $error = $_FILES['file']['error'];
+        if ($error)
+        {
+            echo "<script>alert('文件上传失败！');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
+        }
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+        if ($info)
+        {
+//            $fileName = $info->getFilename();
+            $file = $info->getFilename();
+            return $file;
+        }
+        else
+        {
+            $this->error($file->getError());
+        }
+    }
 }
