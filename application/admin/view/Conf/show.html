@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="__PUBLIC__/admin/css/main.css">
 </head>
 <body>
+<center>
+
+
+<h1>网站配置</h1>
 <div id="table" class="mt10">
     <div class="box span10 oh">
         <table width="100%" border="1" cellpadding="0" cellspacing="0" class="list_table">
@@ -28,7 +32,7 @@
             </tr>
             <tr>
                 <th width="300">LOGO</th>
-                <td><?php echo $data['config_img']?></td>
+                <td><img src="__PUBLIC__/admin/img/{$data.config_img}" alt=""></td>
             </tr>
             <tr>
                 <th width="300">版权</th>
@@ -66,35 +70,7 @@
     $("#gai").on("click",function () {
         location.href ="{:url('Conf/update')}";
     })
-    $(".statu").on("click",function () {
-        // alert(10);
-        var where = $(this).attr("where");
-        var _this = $(this);
-        $.ajax({
-            type:"POST",
-            url:"{:Url('Confg/statu')}",
-            data:{where:where},
-            success:function (res) {
-                if(res==1)
-                {
-                    if(where==0)
-                    {
-                        _this.attr("where","1");
-                        _this.html("<font color=\"red\">不显示</font>");
-                    }
-                    else
-                    {
-                        _this.attr("where","0");
-                        _this.html("<font color=\"green\">正常显示</font>");
-                    }
-                }
-                else
-                {
-                    alert(res)
-                }
-            }
-        })
-    })
 </script>
+</center>
 </body>
 </html>

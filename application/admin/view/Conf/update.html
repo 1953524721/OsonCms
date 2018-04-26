@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <th width="300">描述</th>
-            <td><input type="text" name="desc" class="input-text lh30" size="40" placeholder="<php echo $data['config_desc']?>"></td>
+            <td><input type="text" name="desc" class="input-text lh30" size="40" placeholder="{$data.config_desc}"></td>
         </tr>
         <tr>
             <th width="300">简介</th>
@@ -30,6 +30,7 @@
         <tr>
             <th width="300">LOGO</th>
             <td>
+                <p><img src="__PUBLIC__/admin/img/{$data.config_img}" alt=""></p>
                 <input type="file" name="logo">
             </td>
         </tr>
