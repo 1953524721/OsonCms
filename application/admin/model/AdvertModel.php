@@ -10,6 +10,11 @@ class AdvertModel extends Model
         $res = Db::table($this->tableName)->select();
         return $res;
     }
+    public function Where($id)
+    {
+        $res = Db::table($this->tableName)->where("advert_id",$id)->find();
+        return $res;
+    }
 
 
 

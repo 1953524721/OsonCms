@@ -89,9 +89,9 @@ class Advert extends Controller
         $page   = $this->xss(input("get.page",1));
         $size   = 5;
         $offset = ($page-1)*$size;
-        $sql1   = "SELECT count(*) as num FROM `oson_log` ";
+        $sql1   = "SELECT count(*) as num FROM `oson_advert` ";
         $count  = Db::query($sql1)['0']['num'];
-        $sql2   = "SELECT * FROM `oson_log` LIMIT $offset,$size";
+        $sql2   = "SELECT * FROM `oson_advert` LIMIT $offset,$size";
         $data   = Db::query($sql2);
         $best   = ceil($count/$size);
         $last   = $page-1<1?1:$page-1;
@@ -102,7 +102,52 @@ class Advert extends Controller
         $this->assign("next",$next);
 //        $model  = new AdvertModel();
 //        $data   = $model->select();
-////        print_r($data);die();
+//        print_r($data);die();
         return view("advertShow",["data"=>$data]);
+    }
+    /*
+     * @刘柯
+     * 2018/04/17 9:30
+     * 渲染修改
+     */
+    public function advertUp()
+    {
+        $Model = new AdvertModel();
+        $id    = $this->xss(input("get.id"));
+        $data  = $Model->Where($id);
+        return view("advertUp",["data"=>$data]);
+    }
+    /*
+     * @刘柯
+     * 2018/04/27 9:37
+     * 修改
+     */
+    public function up()
+    {
+        $file                 = request()->file('file');
+        $fileName             = date("Ymd") . "/" . $this->file($file);
+        $data                 = input('post.');
+        $id                   = $data['id'];
+        $arr['advert_name']   = $this->xss($data['name']);
+        $arr['advert_url']    = "http://" . $data['url'];
+        $arr['advert_brief']  = $this->xss($data['brief']);
+        $arr['start_time']    = $this->xss($data['start_time']);
+        $arr['end_time']      = $this->xss($data['end_time']);
+        $arr['advert_img']    = $fileName;
+//        $rest['user_name']    = $session = Session::get('user_info')['user_id'];
+        $rest['user_name']    = "刘柯";
+        $rest['log_time']     = date("Y-m-d H:i:s");
+        $rest['log_ip']       = $_SERVER['SERVER_ADDR'];
+        $rest['log_name']     = "修改广告"."$id";
+        $res = Db::table("oson_advert")->where("advert_id",$id)->update($arr);
+        $log = Db::table("oson_log")->insert($rest);
+        if($res && $log)
+        {
+            $this->success("广告修改成功",url('advert/AdvertShow'));
+        }
+        else
+        {
+            $this->error();
+        }
     }
 }
