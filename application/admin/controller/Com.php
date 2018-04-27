@@ -18,8 +18,6 @@ class Com extends Controller
         $action=$request->action();
         $ac=$controoler.'/'.$action;
         $rbac=Session::get('rbac');
-
-
         if(!in_array($ac,$rbac)){
             $this->error("你没有权限","index/index",'','1');
         }
