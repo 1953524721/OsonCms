@@ -3,6 +3,11 @@ namespace app\admin\controller;
 use \think\Controller;
 class Map extends Controller
 {
+    /*
+     * @刘柯
+     * 2018/04/27 11:20
+     * 经度
+     */
     public function lng($newdata)
     {
         $url = "http://api.map.baidu.com/geocoder/v2/?address=".$newdata."&output=json&ak=7GQ2o7u5lwmiOYVhhRlvAQT4IYcG3qYQ";
@@ -11,6 +16,11 @@ class Map extends Controller
         $lng = $json_data->result->location->lng;
         return $lng;
     }
+    /*
+     * @刘柯
+     * 2018/04/27 11:10
+     * 经度
+     */
     public function lat($newdata)
     {
         $url = "http://api.map.baidu.com/geocoder/v2/?address=".$newdata."&output=json&ak=7GQ2o7u5lwmiOYVhhRlvAQT4IYcG3qYQ";
@@ -19,6 +29,11 @@ class Map extends Controller
         $lat = $json_data->result->location->lat;
         return $lat;
     }
+    /*
+     * @刘柯
+     * 2018/04/27 11:9
+     *城市
+     */
     public function getCity(){
         $ch = curl_init();
         $url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json";
@@ -29,6 +44,11 @@ class Map extends Controller
         $arr = json_decode($arrData,true);
         return $arr['city'];
     }
+    /*
+     * @刘柯
+     * 2018/04/27 11：23
+     * 数据
+     */
     public function lic ()
     {
         $city = $this->getCity();
