@@ -2,26 +2,11 @@
 namespace app\admin\model;
 use think\Model;
 use think\Db;
-class AdvertModel extends Model
+class ImgModel extends Model
 {
-    public $tableName = "oson_advert";
+    public $tableName = "oson_img";
     public function Select()
     {
         $res = Db::table($this->tableName)->select();
-        return $res;
     }
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
