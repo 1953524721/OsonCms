@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/public.css" />
+    <script type="text/javascript" src="__PUBLIC__/admin/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/public.js"></script>
+</head>
+<body>
+<!-- 头部 -->
+<div class="head">
+    <div class="headL">
+        <img class="headLogo" src="__PUBLIC__/admin/img/logLOGO.png"/>
+    </div>
+    <div class="headR">
+        <span style="color:#FFF">欢迎：<?= $user_name?></span> <a href="javascript:void(0)" id="tc" rel="external">【退出】</a>
+    </div>
+</div>
+</body>
+<script>
+    $(document).on('click','#tc',function () {
+        var name=1;
+        $.ajax({
+            type: "POST",
+            url: "{:url('Index/outLogin')}",
+            data: {name:name},
+            success: function(msg){
+                if(msg==1){
+                    location.href="{:url('Index/outLogin')}";
+                }
+            }
+        });
+    })
+</script>
+</html>
