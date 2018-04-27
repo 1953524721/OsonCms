@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/public.css" />
+    <script type="text/javascript" src="__PUBLIC__/admin/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/public.js"></script>
+</head>
+<body id="bg">
+<div class="container">
+    <div class="leftsidebar_box">
+        <a href="main.html" target="main"><div class="line">
+            <img src="__PUBLIC__/admin/img/coin01.png" />&nbsp;&nbsp;首页
+        </div></a>
+
+        {foreach $data as $vo}
+        <dl class="system_log">
+            <dt>
+                <img class="icon1" src="__PUBLIC__/admin/img/coin03.png" />
+                <img class="icon2" src="__PUBLIC__/admin/img/coin04.png" /> {$vo['power_name']}
+                <img class="icon3" src="__PUBLIC__/admin/img/coin19.png" />
+                <img class="icon4" src="__PUBLIC__/admin/img/coin20.png" />
+            </dt>
+            {foreach $vo['son'] as $v}
+            <dd>
+                <img class="coin11" src="__PUBLIC__/admin/img/coin111.png" />
+                <img class="coin22" src="__PUBLIC__/admin/img/coin222.png" />
+                <a class="cks" href="__PUBLIC__/admin/{$v['controller_name']}/{$v['action_name']}" target="main">{$v['power_name']}</a>
+                <img class="icon5" src="__PUBLIC__/admin/img/coin21.png" />
+            </dd>
+            {/foreach}
+        </dl>
+        {/foreach}
+    </div>
+
+</div>
+</body>
+</html>

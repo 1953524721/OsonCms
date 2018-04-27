@@ -25,11 +25,15 @@ class Conf extends Controller
     public function update(){
         $model = new ConfgModel();
         $data  = $model->Find("1");
-
         $this->assign("data",$data);
         return $this->fetch("update");
 
     }
+    /*
+    * @宋守一
+    * 2018/04/16 16:19
+    * 修改网站
+    */
     public function statu(){
         $where = $this->xss(input("post.where"));
         $model = new ConfgModel();
@@ -37,7 +41,7 @@ class Conf extends Controller
             "log_name"=>"开启或关闭网站",
             "log_ip"=>$_SERVER['SERVER_ADDR'],
             "log_time"=>date("Y-m-d H:i:s",time()),
-            "user_name"=>session::get("user_info")['user_name']?session::get("user_info")['user_name']:"宋守一",
+            "user_name"=>session::get("user_info")['user_name']
         );
         $model->logAdd($logArr);
         $data  = $model->upStatu($where);
@@ -48,22 +52,31 @@ class Conf extends Controller
         }
 
     }
+    /*
+ * @宋守一
+ * 2018/04/16 16:19
+ * 修改网站Do
+ */
     public function upload_ok(){
         $post = input("post.");
-//        print_r($post);die;
         foreach ($post as $k =>$v){
-            if(!is_array($v)){
-                $new[$k] =  $this->xss($v);
-            }
+             $post[$k] =  $this->xss($v);
         }
-        print_r($new);die;
-//        $logArr =  array(
-//            "log_name"=>"修改网站配置",
-//            "log_ip"=>$_SERVER['SERVER_ADDR'],
-//            "log_time"=>date("Y-m-d H:i:s",time()),
-//            "user_name"=>session::get("user_info")['user_name']?session::get("user_info")['user_name']:"测试组",
-//        );
-//        $model->logAdd($logArr);
+        $post['config_img'] = "/coin03.png";
+        $logArr =  array(
+            "log_name"=>"修改网站配置",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']?session::get("user_info")['user_name']:"测试组",
+        );
+        $model = new ConfgModel();
+        $model->logAdd($logArr);
+        $resUp = $model->upload_ok($post);
+        if($resUp){
+            $this->success("修改成功","Conf/show",'',1);
+        }else{
+            $this->success("修改失败","Conf/update",'',1);
+        }
 
     }
 

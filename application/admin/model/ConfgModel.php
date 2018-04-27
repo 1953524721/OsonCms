@@ -19,4 +19,9 @@ class ConfgModel extends Model
         $res = Db::table($this->tableName)->where($id)->update($up);
         return $res;
     }
+    public function upload_ok($post){
+        $id = array("config_id"=>1);
+        $res = Db::table($this->tableName)->where($id)->update($post);
+        return $res;
+    }
 }

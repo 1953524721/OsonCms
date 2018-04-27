@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理员管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/css.css" />
+<script type="text/javascript" src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+</head>
+
+<body>
+	<div id="pageAll" style="text-align: center; margin-top: 50px;">
+
+
+			<h1 style="font-size: 25px;">查看权限</h1>
+
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+
+				<!-- user 表格 显示 -->
+				<div class="conShow" style="margin-left: 50px;">
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="450px" class="tdColor tdC">用户名</td>
+							<td width="450px" class="tdColor">所拥有角色</td>
+							<td width="330px" class="tdColor">添加时间</td>
+							<td width="100px" class="tdColor tdC">操作</td>
+						</tr>
+						{foreach $data as $v}
+						<tr height="40px">
+							<td>{$v.role_name}</td>
+							<td>{$v.power_name}</td>
+							<td>{$v.addtime}</td>
+							<td>
+								<a href="javascript:void(0)" where="{$v.power_id}" where2="{$v.role_id}" class="delRolePower">
+									<img class="operation delban" src="__PUBLIC__/admin/img/delete.png">
+								</a>
+							</td>
+							</td>
+						</tr>
+						{/foreach}
+					</table>
+
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+		</div>
+	</div>
+	<!-- 删除弹出框  end-->
+</body>
+</html>
+<script type="text/javascript">
+    $(document).on("click",".delRolePower",function () {
+        var a      =  confirm("你确定要删除此权限吗？");
+        var powerId =  $(this).attr("where");
+        var roleId =  $(this).attr("where2");
+        if(a){
+            $.ajax({
+                type:"POST",
+                url:"{:url('Rolepower/delRolePower')}",
+                data:{roleId:roleId,powerId:powerId},
+                dataType:"json",
+                success:function (e) {
+                    // alert(e)
+                    if(e.e==1){
+                        location.href="showRolepower";
+                    }else{
+                        alert(e.m)
+                    }
+                }
+            })
+		}
+    })
+	</script>
