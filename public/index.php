@@ -11,6 +11,10 @@
 
 // [ 应用入口文件 ]
 
+$ip    =  $_SERVER['SERVER_ADDR'];
+if($ip!='127.0.0.1'){
+    die("<script>alert('抱歉,本网站暂不对外开放')</script>");
+}
 // 定义应用目录
 
 define('APP_PATH', __DIR__ . '/../application/');
