@@ -39,11 +39,11 @@ use think\Db;
         //登录成功，记入sessin。清空错误次数
         Db::execute("update oson_user set error_num = 0 where `user_name` ='$name'");
         $rbac = Db::query("SELECT * FROM oson_power WHERE power_id IN (SELECT power_id FROM oson_r_p WHERE role_id in(SELECT role_id FROM oson_u_r WHERE user_id='$res[user_id]' ))");
+        $rbacarr = array();
         foreach ($rbac as $key => $val){
             if(!empty($val['controller_name'])){
                 $rbacarr[]=$val['controller_name'].'/'.$val['action_name'];
             }
-
         }
         Session::set('rbac',$rbacarr);
         Session::set('user_info',$res);

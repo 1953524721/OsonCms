@@ -29,6 +29,13 @@ use think\Db;
             $arr =  array(
                 "role_name"=>$addRolename
             );
+            $logArr =  array(
+                "log_name"=>"添加角色",
+                "log_ip"=>$_SERVER['SERVER_ADDR'],
+                "log_time"=>date("Y-m-d H:i:s",time()),
+                "user_name"=>session::get("user_info")['user_name']
+            );
+            Db::table("oson_log")->insert($logArr);
             $res = $this->Model->addRole($arr);
             if($res){
                 $this->success("添加成功","Role/showRole",'','1');
@@ -40,6 +47,13 @@ use think\Db;
             $roleId =  $this->xss(input("post.roleId"));
 //            print_r($roleId);die;
             $res    =  $this->Model->delRole($roleId);
+            $logArr =  array(
+                "log_name"=>"删除角色",
+                "log_ip"=>$_SERVER['SERVER_ADDR'],
+                "log_time"=>date("Y-m-d H:i:s",time()),
+                "user_name"=>session::get("user_info")['user_name']
+            );
+            Db::table("oson_log")->insert($logArr);
             if($res){
                 exit(json_encode(array("e"=>1,"m"=>'删除成功')));
             }else{

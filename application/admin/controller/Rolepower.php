@@ -32,6 +32,7 @@ class Rolepower  extends  Com{
             "role"=>$RoleArr,
             "power"=>$PowerArr
         );
+
         return view("RolePower/addRolePower",['data'=>$data]);
     }
     public function addPowerDo(){
@@ -51,7 +52,13 @@ class Rolepower  extends  Com{
                 $newArr[$key]['addtime'] = date("Y-m-d H:i:s",time());
             }
         }
-
+        $logArr =  array(
+            "log_name"=>"给角色分权限",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         $addRes  = $this->Model->addRolePower($newArr);
         if($addRes){
             $this->success("添加成功","Rolepower/showRolepower");
@@ -68,6 +75,13 @@ class Rolepower  extends  Com{
         $roleId =  $this->xss(input("post.roleId"));
         $powerId=  $this->xss(input("post.powerId"));
         $res    =  $this->Model->delRolePower($roleId,$powerId);
+        $logArr =  array(
+            "log_name"=>"删除角色权限",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         if($res){
             exit(json_encode(array("e"=>1,"m"=>'删除成功')));
         }else{

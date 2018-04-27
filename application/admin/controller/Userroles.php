@@ -36,7 +36,6 @@ class Userroles  extends  Com{
             "user"=>$UserArr,
             "role"=>$RoleArr
         );
-//        print_r($data);die;
         return view("Userroles/addUserRole",["data"=>$data]);
     }
 
@@ -57,6 +56,13 @@ class Userroles  extends  Com{
                 $newArr[$key]['addtime'] = date("Y-m-d H:i:s",time());
             }
         }
+        $logArr =  array(
+            "log_name"=>"给用户分角色",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         $addRes  = $this->Model->addUserRole($newArr);
         if($addRes){
             $this->success("添加成功","Userroles/showUserRole");
@@ -69,6 +75,12 @@ class Userroles  extends  Com{
         return view("Userroles/showUserRole",["data"=>$arrAll]);
     }
     public function delUserRole(){
+        $logArr =  array(
+            "log_name"=>"删除用户角色",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
         $roleId =  $this->xss(input("post.roleId"));
         $userId =  $this->xss(input("post.userId"));
         $res    =  $this->Model->delUserRole($roleId,$userId);

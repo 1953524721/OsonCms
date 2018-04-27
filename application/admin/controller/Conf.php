@@ -25,7 +25,6 @@ class Conf extends Controller
     public function update(){
         $model = new ConfgModel();
         $data  = $model->Find("1");
-
         $this->assign("data",$data);
         return $this->fetch("update");
 
@@ -42,7 +41,7 @@ class Conf extends Controller
             "log_name"=>"开启或关闭网站",
             "log_ip"=>$_SERVER['SERVER_ADDR'],
             "log_time"=>date("Y-m-d H:i:s",time()),
-            "user_name"=>session::get("user_info")['user_name']?session::get("user_info")['user_name']:"宋守一",
+            "user_name"=>session::get("user_info")['user_name']
         );
         $model->logAdd($logArr);
         $data  = $model->upStatu($where);

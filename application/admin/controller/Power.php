@@ -15,7 +15,6 @@ class Power  extends  Com{
         public function showPower(){
             $arr     =  $this->Model->getPower();
             $digui   =  $this->getSontree($arr);
-
             return  view("Power/showPower",["data"=>$digui]);
         }
         public function addPower(){
@@ -29,6 +28,13 @@ class Power  extends  Com{
             "action_name"=>$action_name,
             "parent_id"=>$parent_id
         );
+        $logArr =  array(
+            "log_name"=>"添加权限",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         $res = $this->Model->addPower($arr);
         if($res){
             $this->success("添加成功","Power/showPower",'','1');
@@ -42,6 +48,13 @@ class Power  extends  Com{
         if(!empty($res)){
             exit(json_encode(array("e"=>3,"m"=>'请先删除当前子集权限')));
         }
+        $logArr =  array(
+            "log_name"=>"删除权限",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         $res    =  $this->Model->delPower($PowerId);
         if($res){
             exit(json_encode(array("e"=>1,"m"=>'删除成功')));

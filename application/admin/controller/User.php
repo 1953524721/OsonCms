@@ -40,6 +40,13 @@ class User  extends  Com{
             "user_pwd"=>md5($addUserpwd),
         );
         $res = $this->Model->addUser($retArr);
+        $logArr =  array(
+            "log_name"=>"添加用户",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         if($res){
             $this->success("添加成功","User/showUser",'','1');
         }else{
@@ -52,6 +59,13 @@ class User  extends  Com{
     public function delUser(){
         $userId =  $this->xss(input("post.userId"));
         $res    =  $this->Model->delUser($userId);
+        $logArr =  array(
+            "log_name"=>"删除用户",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         if($res){
             exit(json_encode(array("e"=>1,"m"=>'删除成功')));
         }else{
@@ -69,6 +83,13 @@ class User  extends  Com{
         }else{
             $where=1;
         }
+        $logArr =  array(
+            "log_name"=>"冻结用户",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         $res    =  $this->Model->statuUser($where,$id);
         if($res){
             exit(json_encode(array("e"=>1,"m"=>'修改成功')));
@@ -86,6 +107,13 @@ class User  extends  Com{
             $where=0;
         }
         $res    =  $this->Model->errorUser($where,$id);
+        $logArr =  array(
+            "log_name"=>"错误信息解冻或冻结",
+            "log_ip"=>$_SERVER['SERVER_ADDR'],
+            "log_time"=>date("Y-m-d H:i:s",time()),
+            "user_name"=>session::get("user_info")['user_name']
+        );
+        Db::table("oson_log")->insert($logArr);
         if($res){
             exit(json_encode(array("e"=>1,"m"=>'修改成功')));
         }else{
