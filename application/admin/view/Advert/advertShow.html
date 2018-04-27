@@ -38,7 +38,10 @@
                 <td>{$vo['start_time']}</td>
                 <td>{$vo['end_time']}</td>
                 <td class="a">{$vo['advert_brief']}</td>
-                <td><a href="{:url('advert/advertUp')}?id={$vo['advert_id']}">修改</a></td>
+                <td>
+                    <a href="{:url('advert/advertUp')}?id={$vo['advert_id']}">修改</a>
+                    <a href="javascript:void(0)" class="del" where = "{$vo['advert_id']}">删除</a>
+                </td>
             </tr>
             {/foreach}
         </table>
@@ -55,6 +58,21 @@
 $(document).on("click",".a",function () {
     var brief = $(this).html();
     alert(brief)
+})
+$(document).on("click",".del",function () {
+    var id    = $(this).attr("where");
+    var _this = $(this);
+    $.ajax({
+        type:"POST",
+        url:"{:url('advert/del')}",
+        data:{id:id},
+        success:function (res) {
+            if(res=='1')
+            {
+                _this.parent().parent().remove();
+            }
+        }
+    })
 })
 </script>
 </html>

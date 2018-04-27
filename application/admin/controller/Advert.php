@@ -150,4 +150,25 @@ class Advert extends Controller
             $this->error();
         }
     }
+    /*
+     * @刘柯
+     * 2018/04/27 10:06
+     * 删除
+     */
+    public function del()
+    {
+
+        $id    = input("post.")['id'];
+//        print_r($id);die();
+        $res   = Db::table("oson_advert")->where("advert_id",$id)->delete();
+        if($res)
+        {
+            echo "1";
+        }
+        else
+        {
+            $sql = Db::table("oson_advert")->getLastSql();
+            echo $sql;
+        }
+    }
 }
