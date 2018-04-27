@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理员管理</title>
+<link href="__PUBLIC__/admin/css/haiersoft.css" rel="stylesheet" type="text/css" media="screen,print" />
+    <link href="__PUBLIC__/admin/css/print.css" rel="stylesheet" type="text/css"  media="print" />
+    <script src="__PUBLIC__/admin/js/jquery-1.10.1.min.js"></script>
+    <script src="__PUBLIC__/admin/js/side.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/css.css" />
+<script type="text/javascript" src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+</head>
+
+<body>
+    <div id="pageAll">
+        <div class="pageTop">
+            <div class="page">
+                <img src="__PUBLIC__/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;-</span>&nbsp;留言管理
+            </div>
+        </div>
+
+        <div class="page">
+            <!-- user页面样式 -->
+            <div class="connoisseur">
+
+                <!-- user 表格 显示 -->
+                <div class="conShow">
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="66px" class="tdColor tdC">序号</td>
+                            <td width="350px" class="tdColor">留言标题</td>
+                            <td width="320px" class="tdColor">用户电话</td>
+                            <td width="400px" class="tdColor">留言时间</td>
+                            <td width="380px" class="tdColor">客户邮箱</td>
+                            <td width="630px" class="tdColor">留言内容</td>
+                            <td width="350px" class="tdColor">操作</td>
+                        </tr>
+                        {foreach $data.dataall as $v}
+                        <tr height="40px">
+                            <td>{$v['msg_id']}</td>
+                            <td>{$v['msg_title']}</td>
+                            <td>{$v['msg_tel']}</td>
+                            <td>{$v['msg_time']}</td>
+                            <td style="cursor: pointer;" id="email">{$v['msg_email']}</td>
+                            <td>{$v['msg_info']}</td>
+                            <td>
+                                <a href="sendemail?msg_id={$v.msg_id}" title="">邮箱回复</a>
+                            </td>
+                        </tr>
+                        {/foreach}
+                    </table>
+                    <div class="paging">
+                    <ul id="PageNum">
+                        <li><a href="__PUBLIC__/admin/message/showmsg?page=1">首页</a></li>
+                        <li><a href="__PUBLIC__/admin/message/showmsg?page= {$data.last}">上一页</a></li>
+                        <?php for($i=1;$i<=$data['best'];$i++){?>
+                        <li><a href="__PUBLIC__/admin/message/showmsg?page={$i}>"><?= $i?></a></li>
+                        <?php }?>
+                        <li><a href="__PUBLIC__/admin/message/showmsg?page= {$data.next}">下一页</a></li>
+                        <li><a href="__PUBLIC__/admin/message/showmsg?page= {$data.best}">尾页</a></li>
+                    </ul>
+                   </div>
+                </div>
+                <!-- user 表格 显示 end-->
+            </div>
+            <!-- user页面样式end -->
+        </div>
+
+    </div>
+
+
+    <!-- 删除弹出框 -->
+    <div class="banDel">
+
+    </div>
+    <!-- 删除弹出框  end-->
+</body>
+
+<script type="text/javascript">
+$("#email").mouseover(function(){
+  $("#email").css("background-color","#438EC3");
+});
+$("#email").mouseout(function(){
+  $("#email").css("background-color","#F1F1F1");
+});
+$(document).on("click","#email",function(){
+    alert(111)
+})
+
+
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+
+</html>
