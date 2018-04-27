@@ -8,9 +8,11 @@ class Power  extends  Com{
         public $userId;
 
         public $Model;
+        public $UserName;
 
         public function __construct(){
-            $this->Model   =   new PowerModel();
+            $this->Model       =   new PowerModel();
+            $this->UserName    =  session::get("user_info")['user_name'];
         }
         public function showPower(){
             $arr     =  $this->Model->getPower();
@@ -31,8 +33,7 @@ class Power  extends  Com{
         $logArr =  array(
             "log_name"=>"添加权限",
             "log_ip"=>$_SERVER['SERVER_ADDR'],
-            "log_time"=>date("Y-m-d H:i:s",time()),
-            "user_name"=>session::get("user_info")['user_name']
+            "user_name"=>$this->UserName
         );
         Db::table("oson_log")->insert($logArr);
         $res = $this->Model->addPower($arr);
@@ -51,8 +52,7 @@ class Power  extends  Com{
         $logArr =  array(
             "log_name"=>"删除权限",
             "log_ip"=>$_SERVER['SERVER_ADDR'],
-            "log_time"=>date("Y-m-d H:i:s",time()),
-            "user_name"=>session::get("user_info")['user_name']
+            "user_name"=>$this->UserName
         );
         Db::table("oson_log")->insert($logArr);
         $res    =  $this->Model->delPower($PowerId);
