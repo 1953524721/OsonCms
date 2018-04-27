@@ -12,6 +12,7 @@ class Index extends Controller
         $advert = DB::query("SELECT * FROM oson_advert");
         $link   = DB::query("SELECT * FROM oson_link");
         $lunbo  = DB::query("SELECT * FROM oson_img");
+        $info=DB::query("SELECT * FROM oson_about");
         // print_r($lunbo);die;
         $this->assign("nav",$nav);
         $this->assign("config",$config);
@@ -25,6 +26,8 @@ class Index extends Controller
      public function about(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
          $info=DB::query("SELECT * FROM oson_about");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          // print_r($info);die;
          $this->assign("nav",$nav);
          $this->assign("info",$info);
@@ -32,16 +35,22 @@ class Index extends Controller
      }
      public function contact(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('contact');
      }
      public function join(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('join');
      }
      public function message(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('message');
      }
@@ -78,21 +87,29 @@ class Index extends Controller
 }
      public function new_info(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('new_info');
      }
      public function new_list(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('new_list');
      }
      public function product_list(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('product_list');
      }
      public function product_info(){
          $nav=DB::query("SELECT * FROM oson_nav WHERE nav_status=1  ORDER BY nav_ord ASC");
+         $config = DB::query("SELECT * FROM oson_config");
+         $this->assign("config",$config);
          $this->assign("nav",$nav);
         return $this->fetch('product_info');
      }

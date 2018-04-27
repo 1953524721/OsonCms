@@ -33,12 +33,12 @@
         <div class="hd-left">
             <div class="hd-logo">
                 <a href="#">
-                    <img src="images/logo.png" />
+                    <img src="__PUBLIC__/index/<?= $config[0]['config_img']?>" />
                 </a>
             </div>
             <div class="hd-company">
-                <strong>某某化肥有限公司</strong>
-                <span>www.cssmoban.com</span>
+                <strong><?= $config[0]['config_title']?></strong>
+                <span>www.css.com</span>
             </div>
         </div>
         <div class="hd-right">
@@ -52,7 +52,7 @@
     <nav>
         <ul class="hd-navul am-collapse" style="height: 0px;">
             {foreach name="nav" item="vo" key="k"}
-            <li><a href="__PUBLIC__/index/{$vo.nav_con}/{$vo.nav_act}" >{$vo.nav_name}</a></li>
+            <li><a href="__PUBLIC__/uploads/{$vo.nav_con}/{$vo.nav_act}" >{$vo.nav_name}</a></li>
             {/foreach}
         </ul>
     </nav>
@@ -61,7 +61,7 @@
 
     <div class="am-cf"></div>
     <div class="cm-bannre">
-        <img src="images/lunbo.jpg"/>
+        <!--<img src="images/lunbo.jpg"/>-->
     </div>
 
     <div class="cm-mian">
@@ -116,26 +116,25 @@
         </div>
     </div>
     ﻿<footer class="footer">
-    <div class="cml-g">
-        <h1>
-          <a href="#">法律申明</a>
-          <a href="#">隐私安全</a>
-          <a href="#">网站地图</a>
-          <a href="#">联系我们</a>
-        </h1>
-        <h2>
-            <span>版权所有 1999-2017</span>
-            <span>某某集团有限公司</span>
-            <span>鄂ICP备1300121000558</span>
-        </h2>
-        <h3>
-            <span>地址:湖北省XX市XX街道XX路XX号</span>
-            <span>邮编:4335100</span>
-            <span>电话:0714-12345678</span>
-        </h3>
-<h3>
-<span><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span></h3>
-    </div>
+        <div class="cml-g">
+            <h1>
+                <a href="#">法律申明</a>
+                <a href="#">隐私安全</a>
+                <a href="#">网站地图</a>
+                <a href="#">联系我们</a>
+            </h1>
+            <h2>
+                <span>版权所有 1999-2018</span>
+                <span><?= $config[0]['config_title']?>集团有限公司</span>
+                <span><?= $config[0]['config_icp']?></span>
+            </h2>
+            <h3>
+                <span>地址:北京市海淀区软件园</span>
+                <span>邮编:100000</span>
+                <span>电话:<?= $config[0]['config_tel']?></span>
+            </h3>
+
+        </div>
 </footer>
 </body>
 </html>

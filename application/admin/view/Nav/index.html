@@ -61,7 +61,7 @@
         $.ajax({
             type: "POST",
             url: "{:url('Nav/add')}",
-            //dataType:'json',
+            dataType:'json',
             data: {nav_name:name,nav_con:con,nav_act:act,nav_status:status,nav_ord:ord},
             success: function(msg){
                 if(msg.e==1){
