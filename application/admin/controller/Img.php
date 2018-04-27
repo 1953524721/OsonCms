@@ -16,6 +16,10 @@ class Img extends Controller
         $desc             = input("post.desc");
         $file             = request()->file('myfile');
         $file_name        = $this->upload($file);
+
+
+
+
         $arr['oson_path'] = $file_name;
         $arr['oson_desc'] = $desc;
         $arr['add_time']  = date("Y-m-d H:i:s");

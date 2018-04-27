@@ -3,7 +3,7 @@ namespace app\admin\controller;
 use  app\admin\model\UserModel;
 use  think\Controller;
 use  think\Session;
-
+use think\Db;
 class User  extends  Com{
 
     /*
@@ -14,8 +14,7 @@ class User  extends  Com{
     /*
      * 用户id通过构造赋值为全局
      * */
-    public function __construct()
-    {
+    public function __construct(){
         $this->userId  =  Session::get("user_info")['user_id'];
         $this->Model   =   new UserModel();
     }
