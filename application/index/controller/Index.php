@@ -7,20 +7,29 @@ class Index extends Controller
 {
     public function index()
     {
-
+        $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+        $this->assign("nav",$nav);
         return $this->fetch('index');
      }
 
      public function about(){
-        return $this->fetch('index');
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
+        return $this->fetch('about');
      }
      public function contact(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('contact');
      }
      public function join(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('join');
      }
      public function message(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('message');
      }
      public function messageDo(){
@@ -57,15 +66,23 @@ class Index extends Controller
      }
 
      public function new_info(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('new_info');
      }
      public function new_list(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('new_list');
      }
      public function product_list(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('product_list');
      }
      public function product_info(){
+         $nav=DB::query("SELECT * FROM oson_nav ORDER BY nav_ord ASC");
+         $this->assign("nav",$nav);
         return $this->fetch('product_info');
      }
 

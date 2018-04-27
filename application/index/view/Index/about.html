@@ -12,7 +12,7 @@
 <link rel='icon' href='favicon.ico' type='__PUBLIC__/indeximage/x-ico' />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<link rel="stylesheet" href="__PUBLIC__/indexcss/default.min.css?t=227" />
+<link rel="stylesheet" href="__PUBLIC__/index/css/default.min.css?t=227" />
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script type="text/javascript" src="__PUBLIC__/index/lib/jquery/jquery.min.js"></script>
 <!--<![endif]-->
@@ -21,11 +21,11 @@
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
 <script src="lib/amazeui/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="__PUBLIC__/indexlib/handlebars/handlebars.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/indexlib/iscroll/iscroll-probe.js"></script>
-<script type="text/javascript" src="__PUBLIC__/indexlib/amazeui/amazeui.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/indexlib/raty/jquery.raty.js"></script>
-<script type="text/javascript" src="__PUBLIC__/indexjs/main.min.js?t=1"></script>
+<script type="text/javascript" src="__PUBLIC__/index/lib/handlebars/handlebars.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/lib/iscroll/iscroll-probe.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/lib/amazeui/amazeui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/lib/raty/jquery.raty.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/main.min.js?t=1"></script>
 </head>
 <body>
     ﻿<header class="hd">
@@ -51,12 +51,9 @@
     <button class="am-show-sm-only am-collapsed" data-am-collapse="{target: '.hd-navul'}">&#xe68b;</button>
     <nav>
         <ul class="hd-navul am-collapse" style="height: 0px;">
-            <li class="on"><a href="{:url('index/index')}">首页</a></li>
-            <li><a href="{:url('index/about')}">关于我们</a></li>
-            <li><a href="{:url('index/new_list')}">新闻资讯</a></li>
-            <li><a href="{:url('index/product_list')}">产品展示</a></li>
-            <li><a href="{:url('index/join')}">加入中正</a>
-            <li><a href="{:url('index/contact')}">联系我们</a
+            {foreach name="nav" item="vo" key="k"}
+            <li><a href="__PUBLIC__/index/{$vo.nav_con}/{$vo.nav_act}" >{$vo.nav_name}</a></li>
+            {/foreach}
         </ul>
     </nav>
 </div>
@@ -94,7 +91,7 @@
                            坚持自主创新、走自然之道提高作物品质更好服务人类的发展道路是中正成立以来最大的特色和优势。目前，中正建有国家绿色有机自然技术研究中心、复合肥料国家工程研究中心、国家认定企业技术中心、养分资源高效开发与综合利用国家重点实验室、土壤肥料资源高效利用国家工程实验室、农业部植物营养与新型肥料创制重点实验室、博士后科研工作站等国家级高端研发平台。先后与山东农业大学、中国农业大学、中国农业科学院、农业部全国农业技术推广服务中心、中国科学院南京土壤研究所、国家杂交水稻工程技术研究中心等40余家科研院校建立长期合作关系，致力于新型肥料在全球的研发与推广应用。
 
                            中正先后承担了“十一五”、“十二五”国家科技支撑计划和国家星火计划、国家自然之道计划、国家重点创新企业计划等30余项国家级和省级重大科研项目。截止目前，拥有专利200项，其中发明专利199项，并荣获国家自然科学奖2项、XX省科技进步一等奖2项，国家重点创新产品3项、中国驰名商标2个。
-                           <img src="__PUBLIC__/indeximages/article.jpg"/>
+                           <img src="__PUBLIC__/index/images/article.jpg"/>
                        </div>
                    </div>
             </div>

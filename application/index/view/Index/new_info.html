@@ -51,12 +51,9 @@
     <button class="am-show-sm-only am-collapsed" data-am-collapse="{target: '.hd-navul'}">&#xe68b;</button>
     <nav>
          <ul class="hd-navul am-collapse" style="height: 0px;">
-            <li class="on"><a href="{:url('index/index')}">首页</a></li>
-            <li><a href="{:url('index/about')}">关于我们</a></li>
-            <li><a href="{:url('index/new_list')}">新闻资讯</a></li>
-            <li><a href="{:url('index/product_list')}">产品展示</a></li>
-            <li><a href="{:url('index/join')}">加入中正</a>
-            <li><a href="{:url('index/contact')}">联系我们</a>
+             {foreach name="nav" item="vo" key="k"}
+             <li><a href="__PUBLIC__/index/{$vo.nav_con}/{$vo.nav_act}" >{$vo.nav_name}</a></li>
+             {/foreach}
         </ul>
     </nav>
 </div>
