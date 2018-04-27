@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏查看</title>
+    <link href="__PUBLIC__/admin/css/haiersoft.css" rel="stylesheet" type="text/css" media="screen,print" />
+    <link href="__PUBLIC__/admin/css/print.css" rel="stylesheet" type="text/css"  media="print" />
+    <script src="__PUBLIC__/admin/js/jquery-1.10.1.min.js"></script>
+    <script src="__PUBLIC__/admin/js/side.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="MainForm">
+    <div class="form_boxA">
+        <h2>年度预算列表</h2>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>编号</th>
+                <th>导航名</th>
+                <th>导航栏控制器</th>
+                <th>导航栏方法</th>
+                <th>导航栏排序</th>
+                <th>启用状态</th>
+                <th>操作</th>
+            </tr>
+            {foreach $data as $vo}
+                <tr id="{$vo.nav_id}">
+                    <td>{$vo.nav_id}</td>
+                    <td class="xg" i="{$vo.nav_id}" w="nav_name">{$vo.nav_name}</td>
+                    <td class="xg" i="{$vo.nav_id}" w="nav_con">{$vo.nav_con}</td>
+                    <td class="xg" i="{$vo.nav_id}" w="nav_act">{$vo.nav_act}</td>
+                    <td class="xg" i="{$vo.nav_id}" w="nav_ord">{$vo.nav_ord}</td>
+                    <?php if($vo['nav_status']==1){?>
+                    <td><a href="javascript:void(0)" i="{$vo.nav_id}" w="0" class="zt">启用</a></td>
+                    <?php }else{?>
+                    <td><a href="javascript:void(0)" i="{$vo.nav_id}" w="1" class="zt">未启用</a></td>
+                    <?php }?>
+                    <td><a href="javascript:void(0)" class="sc" w="{$vo.nav_id}">删除</a></td>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
+    <ul id="PageNum">
+        <li><a href="{:url('Nav/show')}?page=1">首页</a></li>
+        <li><a href="{:url('Nav/show')}?page=<?= $last?>">上一页</a></li>
+        <li><a href="{:url('Nav/show')}?page=<?= $next?>">下一页</a></li>
+        <li><a href="{:url('Nav/show')}?page=<?= $best?>">尾页</a></li>
+    </ul>
+</div>
+<!-- /MainForm -->
+</body>
+<script>
+    $(document).on("click",".zt",function () {
+        var id=$(this).attr("i");
+        var name=$(this).attr("w");
+        var zd="nav_status";
+        var _this=$(this);
+        $.ajax({
+            type: "POST",
+            url: "{:url('Nav/update')}",
+            dataType:'json',
+            data: {nav_id:id,name:name,zd:zd},
+            success: function(msg){
+                if(msg.e==1){
+                    if(name==1){
+                        _this.attr("w","0");
+                        _this.html("启用");
+                    }else{
+                        _this.attr("w","1");
+                        _this.html("未启用");
+                    }
+                }else{
+
+                }
+            }
+        });
+    })
+    $(document).on("click",".sc",function () {
+        var a  =  confirm("你确定要删除此评论吗？");
+        if(a){
+            var id=$(this).attr("w");
+            $.ajax({
+                type: "POST",
+                url: "{:url('Nav/del')}",
+                dataType:'json',
+                data: {nav_id:id},
+                success: function(msg){
+                    if(msg.e==1){
+                        $("#"+id).remove();
+                    }
+                }
+            });
+        }
+
+    })
+    $(document).on("click",".xg",function () {
+        var val=$(this).html();
+        var id=$(this).attr("where");
+        $(this).html("<input type='text' value='"+val+"'>");
+        $(this).attr("class","bc");
+    })
+    $(document).on("blur",".bc",function () {
+        var id=$(this).attr("i");
+        var name=$(this).find("input").val();
+        var zd=$(this).attr("w");
+        var _this=$(this);
+        $.ajax({
+            type: "POST",
+            url: "{:url('Nav/update')}",
+            dataType:'json',
+            data: {nav_id:id,name:name,zd:zd},
+            success: function(msg){
+                if(msg.e==1){
+                    _this.html();
+                    _this.html(name);
+                    _this.attr("class","xg");
+                }else{
+                    _this.html();
+                    _this.html(name);
+                    _this.attr("class","xg");
+                }
+            }
+        });
+    })
+</script>
+</html>
