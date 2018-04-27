@@ -14,7 +14,7 @@ class Img extends Controller
     public function addImgDo()
     {
         $desc             = input("post.desc");
-        $file             = request()->file('myfile');
+        $file             = request()->file('file');
         $file_name        = $this->upload($file);
         $arr['oson_path'] = $file_name;
         $arr['oson_desc'] = $desc;
@@ -105,9 +105,12 @@ class Img extends Controller
         }else{
             $data['img_status']=0;
             $rs=db('oson_img')->where(array('img_id'=>$img_id))->update($data);
-            if($rs){
+            if($rs)
+            {
                 echo 1;
-            }else{
+            }
+            else
+            {
                 echo 2;
             }
         }
