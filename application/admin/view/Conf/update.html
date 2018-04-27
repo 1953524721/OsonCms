@@ -13,42 +13,43 @@
     <table width="100%" border="1" cellpadding="0" cellspacing="0" class="list_table">
         <tr>
             <th width="300">头部</th>
-            <td><input type="text" name="config_title" class="input-text lh30" size="40" placeholder="<?php echo $data['config_title']?>"> </td>
+            <td><input type="text" name="config_title" class="input-text lh30" size="40" value="{$data.config_title}"> </td>
         </tr>
         <tr>
             <th width="300">描述</th>
-            <td><input type="text" name="config_desc" class="input-text lh30" size="40" placeholder="{$data.config_desc}"></td>
+            <td><input type="text" name="config_desc" class="input-text lh30" size="40" value="{$data.config_desc}"></td>
         </tr>
         <tr>
             <th width="300">简介</th>
-            <td><input type="text" name="config_comment" class="input-text lh30" size="40" placeholder="<?php echo $data['config_comment']?>"></td>
+            <td><input type="text" name="config_comment" class="input-text lh30" size="40" value="{$data.config_comment}"></td>
         </tr>
         <tr>
             <th width="300">ICP</th>
-            <td><input type="text" name="config_icp" class="input-text lh30" size="40" placeholder="<?php echo $data['config_icp']?>"></td>
+            <td><input type="text" name="config_icp" class="input-text lh30" size="40" value="{$data.config_icp}"></td>
         </tr>
         <tr>
             <th width="300">LOGO</th>
             <td>
-                <p><img src="__PUBLIC__/admin/img/{$data.config_img}" alt=""></p>
-                <input type="file" name="config_img">
+            <p><img src="__PUBLIC__/uploads/{$data.config_img}" alt=""></p>
+
+                <input type="file" name="config_img" value="{$data.config_img}">
             </td>
         </tr>
         <tr>
             <th width="300">版权</th>
-            <td><input type="text" name="config_copyright" class="input-text lh30" size="40" placeholder="<?php echo $data['config_copyright']?>"></td>
+            <td><input type="text" name="config_copyright" class="input-text lh30" size="40" value="{$data.config_copyright}"></td>
         </tr>
         <tr>
             <th width="300">关键词</th>
-            <td><input type="text" name="config_crux" class="input-text lh30" size="40" placeholder="<?php echo $data['config_crux']?>"></td>
+            <td><input type="text" name="config_crux" class="input-text lh30" size="40" value="{$data.config_crux}"></td>
         </tr>
         <tr>
             <th width="300">联系方式</th>
-            <td><input type="text" name="config_tel" class="input-text lh30" size="40" placeholder="<?php echo $data['config_tel']?>"></td>
+            <td><input type="text" name="config_tel" class="input-text lh30" size="40" value="{$data.config_tel}"></td>
         </tr>
         <tr>
             <th width="300">邮箱</th>
-            <td><input type="text" name="config_email" class="input-text lh30" size="40" placeholder="<?php echo $data['config_email']?>"></td>
+            <td><input type="text" name="config_email" class="input-text lh30" size="40" value="{$data.config_email}"></td>
         </tr>
         <tr>
             <td class="td_right"></td>

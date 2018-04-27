@@ -62,9 +62,10 @@ class Conf extends Controller
         foreach ($post as $k =>$v){
              $post[$k] =  $this->xss($v);
         }
-        $file =  $_FILES['config_img'];
-        $post['config_img'] = $this->upload($file);
-        print_r($post);die;
+        $file =  request()->file("config_img");
+        $img = $this->upload($file);
+        $post['config_img'] = $img;
+//        print_r($post);die;
         $logArr =  array(
             "log_name"=>"修改网站配置",
             "log_ip"=>$_SERVER['SERVER_ADDR'],
@@ -81,17 +82,12 @@ class Conf extends Controller
         }
 
     }
-    public function upload($file)
-    {
-        if($file)
-        {
+    public function upload($file){
+        if($file){
             $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-            if($info)
-            {
-                return  $info->getSaveName();
-            }
-            else
-            {
+            if($info){
+                return $info->getSaveName();
+            }else{
                 echo $file->getError();
             }
         }
