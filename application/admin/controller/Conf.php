@@ -66,6 +66,7 @@ class Conf extends Controller
         $img = $this->upload($file);
         $post['config_img'] = $img;
 //        print_r($post);die;
+//        print_r($post);die;
         $logArr =  array(
             "log_name"=>"修改网站配置",
             "log_ip"=>$_SERVER['SERVER_ADDR'],
