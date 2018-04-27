@@ -33,16 +33,16 @@
         <div class="hd-left">
             <div class="hd-logo">
                 <a href="#">
-                    <img src="__PUBLIC__/index/images/logo.png" />
+                    <img src="__PUBLIC__/index/<?= $config[0]['config_img']?>" />
                 </a>
             </div>
             <div class="hd-company">
-                <strong>某某化肥有限公司</strong>
-                <span>www.cssmoban.com</span>
+                <strong><?= $config[0]['config_title']?></strong>
+                <span>www.css.com</span>
             </div>
         </div>
         <div class="hd-right">
-            <a href="#">ENGLISH</a><i class="font">&#xe62b;</i><a href="#">中文</a>
+
         </div>
     </div>
 </header>
@@ -62,13 +62,14 @@
     <div class="am-cf"></div>
     <div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000}">
         <ul class="am-slides">
-            <li><img src="__PUBLIC__/index/images/lunbo.jpg" /></li>
-            <li><img src="__PUBLIC__/index/images/lunbo.jpg" /></li>
-            <li><img src="__PUBLIC__/index/images/lunbo.jpg" /></li>
+        {volist name="lunbo" id="v"}
+            <li><img src="__PUBLIC__/uploads/{$v.oson_path}" /></li>
+        {/volist}
+
         </ul>
     </div>
     <div class="index-search">
-        <div class="index-search-g">
+     <!--    <div class="index-search-g">
             <div class="f-l">
                 <span>
                     热门关键词：
@@ -83,7 +84,7 @@
                 <input type="text" placeholder="请输入关键词搜索" />
                 <button><i class="font">&#xe70b;</i>搜索</button>
             </div>
-        </div>
+        </div> -->
     </div>
 
 
@@ -98,7 +99,7 @@
                     </div>
                     <div class="index-new-about">
                         <h1>
-                            某某化肥有限公司成立于1999年，主营复合肥、叶面肥、水溶肥、绿色有机肥、土壤调理剂等土壤所需的全系产品及为种植户提供相关的种植业解决方案服务。公司连续8年绿色有机肥行业销量居首位。是全球最大的绿色有机肥生产基地及国家创新型企业、国家重点高新技术企业、国家技术创新示范企业。现有总资产180亿元，员工10000余人，年生产能力800万吨。
+                            <?= $config[0]['config_desc']?>
                         </h1>
                         <ul>
                             <li>
@@ -260,24 +261,16 @@
     <div class="index-honor">
         <div class="cml-g">
             <div class="cm-title">
-                <em>荣誉资质</em><a href="#">MORE<i class="font">&#xe61b;</i></a>
+                <em>广告</em><a href="#">MORE<i class="font">&#xe61b;</i></a>
             </div>
             <div class="index-honor-silder">
                 <div class="am-slider am-slider-default am-slider-carousel"
                      data-am-flexslider="{itemWidth: 200, itemMargin: 5, slideshow: false}">
                     <ul class="am-slides">
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
-                        <li><a href="#"><img src="images/index_slides.jpg" /><span class="f-toe">2012年被评为“突出贡献”企业</span></a></li>
+                    {volist name="advert" id="v"}
+                        <li><a href="{$v.advert_url}"><img src="__PUBLIC__/uploads/{$v.advert_img}" /><span class="f-toe">{$v.advert_brief}</span></a></li>
+                    {/volist}
+
                     </ul>
                 </div>
             </div>
@@ -287,30 +280,16 @@
     <div class="index-product">
         <div class="cml-g">
             <div class="cm-title">
-                <em>产品中心</em><a href="#">MORE<i class="font">&#xe61b;</i></a>
+                <em>友情链接</em><a href="#">MORE<i class="font">&#xe61b;</i></a>
             </div>
             <div class="index-product-silder">
                 <div class="am-slider am-slider-default am-slider-carousel"
                      data-am-flexslider="{itemWidth: 200, itemMargin: 5, slideshow: false}">
                     <ul class="am-slides">
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
-                        <li><a href="#"><img src="images/index_product.jpg" /><span class="f-toe">水稻复合肥</span></a></li>
+                    {volist name="link" id="v"}
+                        <li><a href="{$v.link_url}"><span class="f-toe">{$v.link_name}</span></a></li>
+                    {/volist}
+
                     </ul>
                 </div>
             </div>
@@ -325,17 +304,16 @@
           <a href="#">联系我们</a>
         </h1>
         <h2>
-            <span>版权所有 1999-2017</span>
-            <span>某某集团有限公司</span>
-            <span>鄂ICP备1300121000558</span>
+            <span>版权所有 1999-2018</span>
+            <span><?= $config[0]['config_title']?>集团有限公司</span>
+            <span><?= $config[0]['config_icp']?></span>
         </h2>
         <h3>
-            <span>地址:湖北省XX市XX街道XX路XX号</span>
-            <span>邮编:4335100</span>
-            <span>电话:0714-12345678</span>
+            <span>地址:北京市海淀区软件园</span>
+            <span>邮编:100000</span>
+            <span>电话:<?= $config[0]['config_tel']?></span>
         </h3>
-<h3>
-<span><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span></h3>
+
     </div>
 </footer>
 </body>
