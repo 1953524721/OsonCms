@@ -13,11 +13,11 @@ class Log extends Controller
     public function logShow()
     {
         $page   = $this->xss(input("get.page",1));
-        $size   = 5;
+        $size   = 10;
         $offset = ($page-1)*$size;
         $sql1   = "SELECT count(*) as num FROM `oson_log` ";
         $count  = Db::query($sql1)['0']['num'];
-        $sql2   = "SELECT * FROM `oson_log` LIMIT $offset,$size";
+        $sql2   = "SELECT * FROM `oson_log` ORDER BY log_time DESC LIMIT  $offset,$size";
         $data   = Db::query($sql2);
         $best   = ceil($count/$size);
         $last   = $page-1<1?1:$page-1;
